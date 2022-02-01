@@ -30,11 +30,34 @@ This code creates a videoPlayer and loads a video and displays it on a UIViewCon
      }
  ```
  
- # unwind Segue
+ # Storyboard navigation: Unwind Segue
  Add this code to your starting view controller to unwind segue or in English go back home
  ```swift
  @IBAction func unwind( _ seg: UIStoryboardSegue) {
 }
  ```
- 
- 
+ #Load a web page and stop navigation to other links
+ ```swift
+ import UIKit
+import WebKit
+
+class WebViewController: UIViewController, WKNavigationDelegate {
+    let urlString = "https://www.bbc.co.uk"
+    @IBOutlet weak var webView: WKWebView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let url = URL(string: urlString)!
+        webView.navigationDelegate = self
+        webView.load(URLRequest(url: url))
+    }
+
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if navigationAction.request.url?.absoluteString == urlString{
+            decisionHandler(.allow)
+        }else{
+            decisionHandler(.cancel)
+        }
+    }
+}
+```
