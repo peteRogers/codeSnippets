@@ -30,13 +30,13 @@ This code creates a videoPlayer and loads a video and displays it on a UIViewCon
      }
  ```
  
- # Storyboard navigation: Unwind Segue
+ ## Storyboard navigation: Unwind Segue
  Add this code to your starting view controller to unwind segue or in English go back home
  ```swift
  @IBAction func unwind( _ seg: UIStoryboardSegue) {
 }
  ```
- #Load a web page and stop navigation to other links
+ ## Load a web page and stop navigation to other links
  ```swift
  import UIKit
 import WebKit
